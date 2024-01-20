@@ -7,5 +7,7 @@
   go install
 
 Для поднятия серверной части используйте Docker:
+  cd server
+  
     
  
