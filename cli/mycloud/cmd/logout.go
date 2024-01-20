@@ -1,40 +1,31 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
 	"fmt"
+	"log"
 
+	"github.com/22Fariz22/mycloud/cli/mycloud/pkg"
 	"github.com/spf13/cobra"
 )
 
-// logoutCmd represents the logout command
+// logoutCmd exit session
 var logoutCmd = &cobra.Command{
 	Use:   "logout",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "exit session",
+	Long:  `no arguments needed`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("logout called")
+
+		_,err:=pkg.Logout()
+		if err!=nil{
+			log.Fatal("err in logout.go : ", err)
+			fmt.Println("произошла ошибка")
+		}
+
+		fmt.Println("Вы успешно вышли из сессии")
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(logoutCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// logoutCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// logoutCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
