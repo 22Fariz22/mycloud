@@ -21,6 +21,7 @@ var deleteCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("err in download.go : ", err)
 			fmt.Println("произошла ошибка")
+			return
 		}
 
 		fmt.Println("Файл успешно удален")

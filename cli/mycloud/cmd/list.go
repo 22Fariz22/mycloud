@@ -20,6 +20,7 @@ var listCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("error in list.go: ", err)
 			fmt.Println("произошла ошибка")
+			return
 		}
 
 		for el := range list {

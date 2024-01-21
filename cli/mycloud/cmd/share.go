@@ -20,6 +20,7 @@ var shareCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("err in share.go : ", err)
 			fmt.Println("произошла ошибка")
+			return
 		}
 
 		fmt.Println("ссылка на скачивание: ", msg)

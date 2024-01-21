@@ -51,7 +51,7 @@ func Delete(args []string) (string, error) {
 	return "", nil
 }
 
-//Share возвращает ссылку на скачивание и ошибку
+// Share возвращает ссылку на скачивание и ошибку
 func Share(args []string) (string, error) {
 
 	return "", nil

@@ -5,6 +5,6 @@ type UserID = int
 
 // User ...
 type User struct {
-	ID   UserID
+	ID    UserID
 	Email string
 }

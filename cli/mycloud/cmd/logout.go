@@ -16,10 +16,11 @@ var logoutCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("logout called")
 
-		_,err:=pkg.Logout()
-		if err!=nil{
+		_, err := pkg.Logout()
+		if err != nil {
 			log.Fatal("err in logout.go : ", err)
 			fmt.Println("произошла ошибка")
+			return
 		}
 
 		fmt.Println("Вы успешно вышли из сессии")
