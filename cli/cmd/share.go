@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/22Fariz22/mycloud/cli/mycloud/pkg"
+	"github.com/22Fariz22/mycloud/cli/pkg"
 	"github.com/spf13/cobra"
 	"log"
 )
