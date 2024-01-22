@@ -1,7 +1,7 @@
 # mycloud
 облачный сервис по хранению файлов
 
-##Installation
+## Installation
 Для установки CLI-приложения Mycloud:
 
 ```sh
@@ -11,14 +11,17 @@ go install
 ```
  
 
-Для поднятия серверной части используйте Docker:
-  - cd server
+## Для поднятия серверной части используйте Docker:
 
-##Команды
+```sh
+cd server
+```
+
+## Команды
 
 |                  |Commands                                       |
 |------------------|-----------------------------------------------|  
-|Sign up           |mycloud <login> <password>                     |
+|Sign up           |mycloud '<login> <password>'                   |
 |Sign in           |mycloud <login> <password>                     |
 |Sign out          |mycloud sign-out                               |
 |List of all files |mycloud list                                   |
