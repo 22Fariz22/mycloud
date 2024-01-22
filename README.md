@@ -1,5 +1,5 @@
 # mycloud
-облачный сервис по хранению файлов
+Облачный сервис по хранению файлов
 
 ## Installation
 Для установки CLI-приложения Mycloud:
@@ -19,7 +19,7 @@ cd server
 
 ## Команды
 
-|                  |Commands                                        |
+|Description       |Commands                                        |
 |------------------|------------------------------------------------|  
 |Sign up           |mycloud <login\> <password\>                    |
 |Sign in           |mycloud <login\> <password\>                    |
