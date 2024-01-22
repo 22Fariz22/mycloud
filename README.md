@@ -1,7 +1,7 @@
-# mycloud
+# Mycloud
 Облачный сервис по хранению файлов
 
-## Installation
+## Установка
 Для установки CLI-приложения Mycloud:
 
 ```sh
@@ -15,6 +15,7 @@ go install
 
 ```sh
 cd server
+...
 ```
 
 ## Команды
