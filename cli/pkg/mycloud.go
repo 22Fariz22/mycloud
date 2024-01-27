@@ -14,11 +14,6 @@ func SignIn(args []string) (string, error) {
 	return "", nil
 }
 
-func SignOut() (string, error) {
-
-	return "", nil
-}
-
 func Logout() (string, error) {
 
 	return "", nil
@@ -41,7 +36,6 @@ func Download(args []string) (string, error) {
 }
 
 func Upload() (string, error) {
-	// Assuming you're uploading the file from a client, e.g. a browser, with Content-Type: application/x-www-form-urlencoded you should use FormFile instead of r.Form.Get which returns a *multipart.File value that contains the content of the file the client sent and which you can use to write that content to disk with io.Copy or what not.
 
 	return "", nil
 }

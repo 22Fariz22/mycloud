@@ -24,7 +24,7 @@ cd server
 |------------------|------------------------------------------------|  
 |Sign up           |mycloud <login\> <password\>                    |
 |Sign in           |mycloud <login\> <password\>                    |
-|Sign out          |mycloud sign-out                                |
+|Log out           |mycloud logout                                  |
 |List of all files |mycloud list                                    |
 |Download file     |mycloud download <path to file on cloud\>       |
 |Upload file       |mycloud upload <path to file on your computer\> |  
