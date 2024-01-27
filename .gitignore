@@ -1,12 +1,17 @@
 # IDE
-.idea
 .vscode
 
-# Config
-#.env
+# Enviroment files
+envs/
+main
+.idea
+pgdata
+vendor
 
-#repo
-pgdata/
+# Config files
+config/apple_config_files
+/config/configs.env
+/config/config_file.go
 
 # Binaries for programs and plugins
 *.exe
@@ -14,7 +19,6 @@ pgdata/
 *.dll
 *.so
 *.dylib
-mr_bin/
 
 # Test binary, built with `go test -c`
 *.test
@@ -23,8 +27,8 @@ mr_bin/
 *.out
 *.cov
 
-
 # Dependency directories (remove the comment below to include it)
 vendor/
+media
 
 bin
