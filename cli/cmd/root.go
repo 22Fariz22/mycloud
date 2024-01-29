@@ -10,7 +10,6 @@ var rootCmd = &cobra.Command{
 	Use:   "mycloud",
 	Short: "Облачный сервис по хранению файлов",
 	Long:  ``,
-
 }
 
 func Execute() {
