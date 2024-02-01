@@ -1,5 +1,14 @@
 package main
 
+import (
+	"log"
+
+	"github.com/22Fariz22/mycloud/server/config"
+	"github.com/22Fariz22/mycloud/server/internal/server"
+
+	"github.com/spf13/viper"
+)
+
 func main() {
 	if err := config.Init(); err != nil {
 		log.Fatalf("%s", err.Error())

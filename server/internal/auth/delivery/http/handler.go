@@ -3,34 +3,34 @@ package http
 import (
 	"net/http"
 
-	"github.com/containerd/containerd/remotes/docker/auth"
+	"github.com/22Fariz22/mycloud/server/internal/auth"
 	"github.com/gin-gonic/gin"
 )
 
-type Handler struct{
+type Handler struct {
 	useCase auth.UseCase
 }
 
-func NewHandler(useCase auth.UseCase)*Handler{
+func NewHandler(useCase auth.UseCase) *Handler {
 	return &Handler{
-     useCase: useCase,		
+		useCase: useCase,
 	}
 }
 
-type signInput struct{
+type signInput struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
 
-func (h *Handler)SignUp(c *gin.Context){
-	inp:=new(signInput)
+func (h *Handler) SignUp(c *gin.Context) {
+	inp := new(signInput)
 
-	if err:= c.BindJSON(inp);err!=nil{
+	if err := c.BindJSON(inp); err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
 
-	if err:= h.useCase.SignUp(c.Request.Context,inp.Username,inp.Password);err!=nil{
+	if err := h.useCase.SignUp(c.Request.Context(), inp.Username, inp.Password); err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
@@ -38,21 +38,20 @@ func (h *Handler)SignUp(c *gin.Context){
 	c.Status(http.StatusOK)
 }
 
-
-type signInResponse struct{
+type signInResponse struct {
 	Token string `json:"token"`
 }
 
-func (h *Handler)SignIn(c *gin.Context){
+func (h *Handler) SignIn(c *gin.Context) {
 	inp := new(signInput)
-	
-	if err:= c.BindJSON(inp);err!=nil{
+
+	if err := c.BindJSON(inp); err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
 
-	token,err:= h.useCase.SignIn(c.Request.Context, inp.Username,inp.password)
-	if err!=nil{
+	token, err := h.useCase.SignIn(c.Request.Context(), inp.Username, inp.Password)
+	if err != nil {
 		if err == auth.ErrUserNotFound {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
@@ -64,10 +63,3 @@ func (h *Handler)SignIn(c *gin.Context){
 
 	c.JSON(http.StatusOK, signInResponse{Token: token})
 }
-
-
-
-
-
-
-
