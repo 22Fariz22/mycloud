@@ -10,13 +10,17 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/22Fariz22/mycloud/server/internal/auth"
+	authhttp "github.com/22Fariz22/mycloud/server/internal/auth/delivery/http"
 	repoMongo "github.com/22Fariz22/mycloud/server/internal/auth/repository/mongo"
 	authusecase "github.com/22Fariz22/mycloud/server/internal/auth/usecase"
+	filehttp "github.com/22Fariz22/mycloud/server/internal/file/delivery/http"
+
 	"github.com/22Fariz22/mycloud/server/internal/file"
 	repoPG "github.com/22Fariz22/mycloud/server/internal/file/repository/postgres"
 	fileusecase "github.com/22Fariz22/mycloud/server/internal/file/usecase"
 	"github.com/22Fariz22/mycloud/server/pkg/logger"
 	"github.com/22Fariz22/mycloud/server/pkg/postgres"
+	"github.com/gin-gonic/gin"
 
 	"github.com/spf13/viper"
 )
@@ -62,6 +66,16 @@ func NewApp() *App {
 }
 
 func (a *App) Run(port string) error {
+	router := gin.Default()
+	router.Use(
+		gin.Recovery(),
+		gin.Logger(),
+	)
+
+	authhttp.RegisterHTTPEndpoints(router, a.authUC)
+
+	authMiddleware := authhttp.NewAuthMiddleware(a.authUC)
+	api := router.Group("/api", authMiddleware)
 
 	return nil
 }

@@ -3,6 +3,6 @@ package entity
 type File struct {
 	ID     string
 	UserID string
-	URL    string
+	File   []byte
 	Title  string
 }
