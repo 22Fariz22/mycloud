@@ -5,7 +5,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/22Fariz22/mycloud/server/internal/entity"
-	userService "github.com/22Fariz22/passbook/server/proto"
+	userService "github.com/22Fariz22/mycloud/proto"
 )
 
 //go:generate mockgen -source pg-repository.go -destination mock/pg_repository.go -package mock
