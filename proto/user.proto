@@ -95,10 +95,5 @@ message GetByTitleResponse{
   repeated string data = 1;
 }
 
-message GetAllTitlesResponse{
-  repeated string data = 1;
-}
-message GetAllTitlesRequest{};
-
 
 

@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/22Fariz22/mycloud/server/internal/entity"
-	userService "github.com/22Fariz22/passbook/server/proto"
+	userService "github.com/22Fariz22/mycloud/proto"
 	"github.com/google/uuid"
 )
 

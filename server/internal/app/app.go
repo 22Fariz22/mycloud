@@ -76,7 +76,7 @@ func (s *Server) Run() error {
 	authGRPCServer := authServerGRPC.NewAuthServerGRPC(s.logger, s.cfg, userUC, sessUC)
 	userService.RegisterUserServiceServer(server, authGRPCServer)
 
-	go func() {
+	go func() {  
 		s.logger.Infof("Server is listening on port: %v", s.cfg.Server.Port)
 		if err := server.Serve(l); err != nil {
 			s.logger.Fatal(err)

@@ -7,7 +7,7 @@ import (
 	"github.com/22Fariz22/mycloud/server/internal/user"
 	"github.com/22Fariz22/mycloud/server/pkg/grpcerrors"
 	"github.com/22Fariz22/mycloud/server/pkg/logger"
-	userService "github.com/22Fariz22/passbook/server/proto"
+	userService "github.com/22Fariz22/mycloud/proto"
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
