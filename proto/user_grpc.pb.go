@@ -29,6 +29,8 @@ type UserServiceClient interface {
 	GetMe(ctx context.Context, in *GetMeRequest, opts ...grpc.CallOption) (*GetMeResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	AddBinary(ctx context.Context, in *AddBinaryRequest, opts ...grpc.CallOption) (*AddBinaryResponse, error)
+	GetByTitle(ctx context.Context, in *GetByTitleRequest, opts ...grpc.CallOption) (*GetByTitleResponse, error)
+	GetFullList(ctx context.Context, in *GetFullListRequest, opts ...grpc.CallOption) (*GetFullListResponse, error)
 }
 
 type userServiceClient struct {
@@ -102,6 +104,24 @@ func (c *userServiceClient) AddBinary(ctx context.Context, in *AddBinaryRequest,
 	return out, nil
 }
 
+func (c *userServiceClient) GetByTitle(ctx context.Context, in *GetByTitleRequest, opts ...grpc.CallOption) (*GetByTitleResponse, error) {
+	out := new(GetByTitleResponse)
+	err := c.cc.Invoke(ctx, "/mycloud.UserService/GetByTitle", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) GetFullList(ctx context.Context, in *GetFullListRequest, opts ...grpc.CallOption) (*GetFullListResponse, error) {
+	out := new(GetFullListResponse)
+	err := c.cc.Invoke(ctx, "/mycloud.UserService/GetFullList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -113,6 +133,8 @@ type UserServiceServer interface {
 	GetMe(context.Context, *GetMeRequest) (*GetMeResponse, error)
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	AddBinary(context.Context, *AddBinaryRequest) (*AddBinaryResponse, error)
+	GetByTitle(context.Context, *GetByTitleRequest) (*GetByTitleResponse, error)
+	GetFullList(context.Context, *GetFullListRequest) (*GetFullListResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -140,6 +162,12 @@ func (UnimplementedUserServiceServer) Logout(context.Context, *LogoutRequest) (*
 }
 func (UnimplementedUserServiceServer) AddBinary(context.Context, *AddBinaryRequest) (*AddBinaryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddBinary not implemented")
+}
+func (UnimplementedUserServiceServer) GetByTitle(context.Context, *GetByTitleRequest) (*GetByTitleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByTitle not implemented")
+}
+func (UnimplementedUserServiceServer) GetFullList(context.Context, *GetFullListRequest) (*GetFullListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFullList not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -280,6 +308,42 @@ func _UserService_AddBinary_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetByTitle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByTitleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetByTitle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mycloud.UserService/GetByTitle",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetByTitle(ctx, req.(*GetByTitleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_GetFullList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFullListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetFullList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mycloud.UserService/GetFullList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetFullList(ctx, req.(*GetFullListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -314,6 +378,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddBinary",
 			Handler:    _UserService_AddBinary_Handler,
+		},
+		{
+			MethodName: "GetByTitle",
+			Handler:    _UserService_GetByTitle_Handler,
+		},
+		{
+			MethodName: "GetFullList",
+			Handler:    _UserService_GetFullList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

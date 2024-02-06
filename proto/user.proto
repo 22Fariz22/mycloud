@@ -73,6 +73,8 @@ service UserService{
 
 
   rpc AddBinary(AddBinaryRequest) returns(AddBinaryResponse);
+  rpc GetByTitle(GetByTitleRequest) returns(GetByTitleResponse);
+  rpc GetFullList(GetFullListRequest) returns(GetFullListResponse);
 }
 
 message AddBinaryRequest{
@@ -86,6 +88,12 @@ message GetFullListResponse{
 }
 message GetFullListRequest{}
 
+message GetByTitleRequest{
+  string title = 1;
+}
+message GetByTitleResponse{
+  repeated string data = 1;
+}
 
 message GetAllTitlesResponse{
   repeated string data = 1;
