@@ -2,12 +2,12 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
 	"time"
-
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/22Fariz22/mycloud/server/internal/auth"
 	authhttp "github.com/22Fariz22/mycloud/server/internal/auth/delivery/http"
@@ -19,7 +19,9 @@ import (
 	repoPG "github.com/22Fariz22/mycloud/server/internal/file/repository/postgres"
 	fileusecase "github.com/22Fariz22/mycloud/server/internal/file/usecase"
 	"github.com/22Fariz22/mycloud/server/pkg/logger"
+	mongodb "github.com/22Fariz22/mycloud/server/pkg/mongo"
 	"github.com/22Fariz22/mycloud/server/pkg/postgres"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/spf13/viper"
@@ -31,16 +33,21 @@ type App struct {
 	fileUC file.UseCase
 	authUC auth.UseCase
 
-	logger logger.Logger
+	//logger logger.Logger
 }
 
 func NewApp() *App {
-	db := InitDB()
+	fmt.Println("in newApp")
+	fmt.Println("viper get mongo uri :", viper.GetString("mongo.uri"))
+	fmt.Println("viper get  :", viper.GetString("postgres.PostgresqlPort"))
+
 
 	appLogger := logger.NewApiLogger()
 
 	appLogger.InitLogger()
 	// appLogger.Infof("AppVersion: %s, LogLevel: %s, Mode: %s, SSL: %v", cfg.Server.AppVersion, cfg.Logger.Level, cfg.Server.Mode, cfg.Server.SSL)
+
+  db := mongodb.InitDB()
 
 	psqlDB, err := postgres.NewPsqlDB()
 	if err != nil {
@@ -66,6 +73,7 @@ func NewApp() *App {
 }
 
 func (a *App) Run(port string) error {
+	fmt.Println("Run")
 	router := gin.Default()
 	router.Use(
 		gin.Recovery(),
@@ -77,27 +85,29 @@ func (a *App) Run(port string) error {
 	authMiddleware := authhttp.NewAuthMiddleware(a.authUC)
 	api := router.Group("/api", authMiddleware)
 
-	return nil
-}
+	filehttp.RegisterHTTPEndpoints(api, a.fileUC)
 
-func InitDB() *mongo.Database {
-	client, err := mongo.NewClient(options.Client().ApplyURI(viper.GetString("mongo.uri")))
-	if err != nil {
-		log.Fatalf("Error occured while establishing connection to mongoDB")
+	a.httpServer = &http.Server{
+		Addr:           ":" + port,
+		Handler:        router,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
-	defer cancel()
+	go func() {
+		if err := a.httpServer.ListenAndServe(); err != nil {
+			log.Fatalf("Failed to listen and serve: %+v", err)
+		}
+	}()
 
-	err = client.Connect(ctx)
-	if err != nil {
-		log.Fatal(err, "error mongo client connect")
-	}
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt)
 
-	err = client.Ping(context.Background(), nil)
-	if err != nil {
-		log.Fatal("log fatal")
-	}
+	<-quit
 
-	return client.Database(viper.GetString("mongo.name"))
+	ctx, shutdown := context.WithTimeout(context.Background(), 5*time.Second)
+	defer shutdown()
+
+	return a.httpServer.Shutdown(ctx)
 }

@@ -1,7 +1,9 @@
 package http
 
 import (
-	"github.com/22Fariz22/mycloud/server/internal/auth/usecase"
+	"fmt"
+
+	//"github.com/22Fariz22/mycloud/server/internal/auth/usecase"
 	"github.com/22Fariz22/mycloud/server/internal/file"
 	"github.com/gin-gonic/gin"
 )
@@ -28,7 +30,7 @@ type uploadInput struct {
 }
 
 func (h *Handler) Upload(c *gin.Context) {
-
+	fmt.Println("handler upload")
 }
 
 func (h *Handler) Download(c *gin.Context) {}

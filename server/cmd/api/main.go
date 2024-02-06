@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/22Fariz22/mycloud/server/config"
@@ -10,6 +11,7 @@ import (
 )
 
 func main() {
+	fmt.Println("main")
 	if err := config.Init(); err != nil {
 		log.Fatalf("%s in main-config.init", err.Error())
 	}
