@@ -1,22 +1,67 @@
 package pkg
 
-import "fmt"
+import (
+	"context"
+	"errors"
+	"fmt"
+	"log"
+	"os"
+
+	pb "github.com/22Fariz22/mycloud/proto"
+	"google.golang.org/grpc/metadata"
+)
 
 // Добавить интерфейс? в интерфейса можно ьыло бы добавить вызов?
 
-func SignUp(args []string) (string, error) {
-
+func SignUp(c pb.UserServiceClient, input *pb.RegisterRequest) (string, error) {
+	_, err := c.Register(context.Background(), input)
+	if err != nil {
+		fmt.Println("failed to register")
+		return "", err
+	}
+	fmt.Println("register is successful")
 	return "", nil
 }
 
-func SignIn(args []string) (string, error) {
+func SignIn(c pb.UserServiceClient, input *pb.LoginRequest)  error {
+resp, err := c.Login(context.Background(), input)
+	if err != nil {
+		fmt.Println("failed to login")
+		return err
+	}
 
-	return "", nil
+	//пишем в файл session_id
+	f, err := os.Create("session.txt")
+	if err != nil {
+		fmt.Println("failed to login")
+		return err
+	}
+	_, err = f.WriteString(resp.SessionId)
+	if err != nil {
+		err = errors.New("возможно вы еще не зарегистрировались")
+		log.Println(err)
+		return err
+	}
+
+	fmt.Println("login successfully")
+	return nil
 }
 
-func Logout() (string, error) {
+// Logout выход из session
+func Logout(c pb.UserServiceClient, input *pb.LogoutRequest) error {
+	ctx, err := GetSessionAndPutInMD()
+	if err != nil {
+		fmt.Println("failed to logout")
+		return err
+	}
 
-	return "", nil
+	_, err = c.Logout(ctx, &pb.LogoutRequest{})
+	if err != nil {
+		fmt.Println("failed to logout")
+		return err
+	}
+	fmt.Println("logout is successful")
+	return nil
 }
 
 func List() ([]string, error) {
@@ -49,4 +94,19 @@ func Delete(args []string) (string, error) {
 func Share(args []string) (string, error) {
 
 	return "", nil
+}
+
+// GetSessionAndPutInMD читает файл session_id, ищет сессию ,вставляет session_id в метаданные и возвращает context
+func GetSessionAndPutInMD() (context.Context, error) {
+	data, err := os.ReadFile("session.txt")
+	if err != nil {
+		log.Println("err in ioutil.ReadFile:", err)
+		return nil, err
+	}
+
+	//вставляем наш session_id в metadata
+	md := metadata.New(map[string]string{"session_id": string(data)})
+	ctx := metadata.NewOutgoingContext(context.Background(), md)
+
+	return ctx, nil
 }

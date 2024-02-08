@@ -39,4 +39,3 @@ func (u *User) PrepareCreate() error {
 	}
 	return nil
 }
-

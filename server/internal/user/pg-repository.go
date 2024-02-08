@@ -4,8 +4,8 @@ import (
 	"context"
 	"github.com/google/uuid"
 
-	"github.com/22Fariz22/mycloud/server/internal/entity"
 	userService "github.com/22Fariz22/mycloud/proto"
+	"github.com/22Fariz22/mycloud/server/internal/entity"
 )
 
 //go:generate mockgen -source pg-repository.go -destination mock/pg_repository.go -package mock

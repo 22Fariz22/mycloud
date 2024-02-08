@@ -3,11 +3,10 @@ package user
 import (
 	"context"
 
-	"github.com/22Fariz22/mycloud/server/internal/entity"
 	userService "github.com/22Fariz22/mycloud/proto"
+	"github.com/22Fariz22/mycloud/server/internal/entity"
 	"github.com/google/uuid"
 )
-
 
 //go:generate mockgen -source usecase.go -destination mock/usecase.go -package mock
 

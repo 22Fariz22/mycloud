@@ -5,7 +5,7 @@ import (
 	"errors"
 	"log"
 
-   "github.com/22Fariz22/mycloud/server/internal/entity"
+	"github.com/22Fariz22/mycloud/server/internal/entity"
 	"github.com/22Fariz22/mycloud/server/pkg/grpcerrors"
 	"github.com/22Fariz22/mycloud/server/pkg/utils"
 	userService "github.com/22Fariz22/mycloud/server/proto"
@@ -130,9 +130,6 @@ func (u *usersService) Logout(ctx context.Context, request *userService.LogoutRe
 
 	return &userService.LogoutResponse{}, nil
 }
-
-
-
 
 // AddBinary save binary data
 func (u *usersService) AddBinary(ctx context.Context, request *userService.AddBinaryRequest) (*userService.AddBinaryResponse, error) {

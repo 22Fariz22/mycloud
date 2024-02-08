@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/22Fariz22/mycloud/server/internal/entity"
 	userService "github.com/22Fariz22/mycloud/proto"
+	"github.com/22Fariz22/mycloud/server/internal/entity"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
@@ -102,4 +102,3 @@ func (r *UserRepository) GetFullList(ctx context.Context, userID string) ([]stri
 
 	return everythingFullList, nil
 }
-

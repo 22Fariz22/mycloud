@@ -5,11 +5,15 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/22Fariz22/mycloud/cli/pkg"
+	pb "github.com/22Fariz22/mycloud/proto"
+
 	"github.com/spf13/cobra"
 )
+
+var login string
+var password string
 
 // signInCmd represents the signIn command
 var signInCmd = &cobra.Command{
@@ -19,14 +23,12 @@ var signInCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("signIn called")
 
-		_, err := pkg.SignIn(args)
-		if err != nil {
-			log.Fatal("error in signIn: ", err)
-			fmt.Println("произошла ошибка")
-			return
-		}
+	  	c := pkg.ConnGRPCServer()
 
-		fmt.Println("Вы успешно вошли в аккаунт")
+		pkg.SignIn(c, &pb.LoginRequest{
+			Login:    login,
+			Password: password,
+		})
 	},
 }
 

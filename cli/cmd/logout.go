@@ -5,6 +5,8 @@ import (
 	"log"
 
 	"github.com/22Fariz22/mycloud/cli/pkg"
+		pb "github.com/22Fariz22/mycloud/proto"
+
 	"github.com/spf13/cobra"
 )
 
@@ -16,14 +18,13 @@ var logoutCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("logout called")
 
-		_, err := pkg.Logout()
+		c := pkg.ConnGRPCServer()
+
+		err := pkg.Logout(c, &pb.LogoutRequest{})
 		if err != nil {
-			log.Fatal("err in logout.go : ", err)
-			fmt.Println("произошла ошибка")
+			log.Fatal(err)
 			return
 		}
-
-		fmt.Println("Вы успешно вышли из сессии")
 	},
 }
 

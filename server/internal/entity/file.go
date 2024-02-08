@@ -6,4 +6,3 @@ type Binary struct {
 	Title  string `json:"title" db:"title" validate:"required,lte=30"`
 	Data   []byte `json:"data" db:"data" validate:"omitempty"`
 }
-

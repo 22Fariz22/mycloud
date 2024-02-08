@@ -1,11 +1,11 @@
 package service
 
 import (
+	pb "github.com/22Fariz22/mycloud/proto"
 	"github.com/22Fariz22/mycloud/server/config"
 	"github.com/22Fariz22/mycloud/server/internal/session"
 	"github.com/22Fariz22/mycloud/server/internal/user"
 	"github.com/22Fariz22/mycloud/server/pkg/logger"
-	pb "github.com/22Fariz22/mycloud/proto"
 )
 
 type usersService struct {

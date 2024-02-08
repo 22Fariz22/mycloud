@@ -6,7 +6,6 @@ import (
 	"github.com/22Fariz22/mycloud/server/internal/entity"
 )
 
-
 //go:generate mockgen -source redis-repository.go -destination mock/redis_repository.go -package mock
 
 // UserRedisRepository Auth Redis repository interface
