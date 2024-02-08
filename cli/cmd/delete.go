@@ -11,8 +11,7 @@ import (
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "delete file",
-	Long:  `as an argument, specify the full path to the file on the cloud`,
+	Long:  `delete file, as an argument, specify the full path to the file on the cloud`,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("delete called")
