@@ -28,7 +28,7 @@ postgres:
   PostgresqlPort: 5432
   PostgresqlUser: postgres
   PostgresqlPassword: 55555
-  PostgresqlDbname: filesdb
+  PostgresqlDbname: file_db
   PostgresqlSslmode: false
   PgDriver: pgx
 
