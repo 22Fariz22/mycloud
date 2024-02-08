@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/22Fariz22/mycloud/server/config"
+	"github.com/22Fariz22/mycloud/server/internal/app"
 	"github.com/22Fariz22/mycloud/server/pkg/logger"
 	"github.com/22Fariz22/mycloud/server/pkg/postgres"
 	"github.com/22Fariz22/mycloud/server/pkg/redis"

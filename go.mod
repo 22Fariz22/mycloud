@@ -3,7 +3,6 @@ module github.com/22Fariz22/mycloud
 go 1.21.5
 
 require (
-	github.com/22Fariz22/passbook v0.0.0-20230525131900-50e60e74bcdf
 	github.com/go-playground/validator/v10 v10.17.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/rs/zerolog v1.31.0
