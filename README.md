@@ -22,9 +22,9 @@ cd server
 
 |Description       |Commands                                        |
 |------------------|------------------------------------------------|  
-|Sign up           |mycloud <login\> <password\>                    |
-|Sign in           |mycloud <login\> <password\>                    |
-|Log out           |mycloud logout                                  |
+|Sign up           |mycloud signup <login\> <password\>             |
+|Sign in           |mycloud signin <login\> <password\>             |
+|Log out           |mycloud out                                     |
 |List of all files |mycloud list                                    |
 |Download file     |mycloud download <path to file on cloud\>       |
 |Upload file       |mycloud upload <path to file on your computer\> |  

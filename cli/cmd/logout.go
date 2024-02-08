@@ -12,7 +12,7 @@ import (
 
 // logoutCmd exit session
 var logoutCmd = &cobra.Command{
-	Use:   "logout",
+	Use:   "out",
 	Long:  `exit session, no arguments needed`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("logout called")
