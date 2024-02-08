@@ -4,21 +4,25 @@ go 1.21.5
 
 require (
 	github.com/go-playground/validator/v10 v10.17.0
+	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
+	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.31.0
 	github.com/spf13/cobra v1.8.0
+	golang.org/x/crypto v0.16.0
 	google.golang.org/protobuf v1.31.0
 )
 
 require (
+	github.com/cockroachdb/apd v1.1.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
+	github.com/gofrs/uuid v4.4.0+incompatible // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/google/uuid v1.6.0 // indirect
+	github.com/jackc/fake v0.0.0-20150926172116-812a484cc733 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
-	golang.org/x/crypto v0.16.0 // indirect
+	github.com/shopspring/decimal v1.3.1 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231120223509-83a465c0220f // indirect
 )
