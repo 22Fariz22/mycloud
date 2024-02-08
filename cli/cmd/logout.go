@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/22Fariz22/mycloud/cli/pkg"
-		pb "github.com/22Fariz22/mycloud/proto"
+	pb "github.com/22Fariz22/mycloud/proto"
 
 	"github.com/spf13/cobra"
 )

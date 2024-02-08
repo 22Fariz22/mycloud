@@ -23,7 +23,7 @@ var signInCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("signIn called")
 
-	  	c := pkg.ConnGRPCServer()
+		c := pkg.ConnGRPCServer()
 
 		pkg.SignIn(c, &pb.LoginRequest{
 			Login:    login,

@@ -23,8 +23,8 @@ func SignUp(c pb.UserServiceClient, input *pb.RegisterRequest) (string, error) {
 	return "", nil
 }
 
-func SignIn(c pb.UserServiceClient, input *pb.LoginRequest)  error {
-resp, err := c.Login(context.Background(), input)
+func SignIn(c pb.UserServiceClient, input *pb.LoginRequest) error {
+	resp, err := c.Login(context.Background(), input)
 	if err != nil {
 		fmt.Println("failed to login")
 		return err
