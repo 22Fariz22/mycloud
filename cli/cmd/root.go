@@ -8,8 +8,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "mycloud",
-	Short: "Облачный сервис по хранению файлов",
-	Long:  ``,
+	Long:  `Облачный сервис по хранению файлов`,
 }
 
 func Execute() {

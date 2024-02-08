@@ -11,8 +11,7 @@ import (
 // downloadCmd download file from cloud
 var downloadCmd = &cobra.Command{
 	Use:   "download",
-	Short: "download file from cloud",
-	Long:  `in argument provide full path to file in Mycloud `,
+	Long:  `download file from cloud, in argument provide full path to file in Mycloud `,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("download called")

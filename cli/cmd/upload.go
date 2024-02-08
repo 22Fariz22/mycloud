@@ -11,8 +11,7 @@ import (
 // uploadCmd represents the upload command
 var uploadCmd = &cobra.Command{
 	Use:   "upload",
-	Short: "upload upur file to Mycloud",
-	Long:  `in argument provide full path to file in your computer`,
+	Long:  `upload your file to Mycloud, in argument provide full path to file in your computer`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("upload called")
 
