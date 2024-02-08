@@ -13,9 +13,8 @@ var registerReq pb.LoginRequest
 
 // signUpCmd represents the signUp command
 var signUpCmd = &cobra.Command{
-	Use:   "signUp",
-	Short: "registration new an account in Mycloud",
-	Long:  `provide two arguments: email and password`,
+	Use:   "signup",
+	Long:  `registration new an account in Mycloud, provide two arguments: email and password`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("signUp called")
 

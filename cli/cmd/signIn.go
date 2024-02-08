@@ -1,6 +1,3 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -17,11 +14,10 @@ var password string
 
 // signInCmd represents the signIn command
 var signInCmd = &cobra.Command{
-	Use:   "signIn",
-	Short: "log in to your account",
-	Long:  `provide two arguments: email and password`,
+	Use:   "signin",
+	Long:  `log in to your account, provide two arguments: email and password`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("signIn called")
+		fmt.Println("signin called")
 
 		c := pkg.ConnGRPCServer()
 

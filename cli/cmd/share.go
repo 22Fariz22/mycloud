@@ -11,8 +11,7 @@ import (
 // shareCmd represents the share command
 var shareCmd = &cobra.Command{
 	Use:   "share",
-	Short: "share your file on the cloud",
-	Long:  `in argument indicate the email with whom you want to share the file`,
+	Long:  `share your file on the cloud, in argument indicate the email with whom you want to share the file`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("share called")
 

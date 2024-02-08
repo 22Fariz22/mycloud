@@ -11,8 +11,7 @@ import (
 // listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list of all files on the cloud",
-	Long:  `no arguments needed`,
+	Long:  `list of all files on the cloud, no arguments needed`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("list called")
 
