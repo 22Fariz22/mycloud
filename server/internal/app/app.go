@@ -9,7 +9,7 @@ import (
 
 	"google.golang.org/grpc/reflection"
 
-	userService "github.com/22Fariz22/mycloud/proto"
+	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/22Fariz22/mycloud/server/config"
 	"github.com/22Fariz22/mycloud/server/internal/interceptors"
 	sessRepository "github.com/22Fariz22/mycloud/server/internal/session/repository"

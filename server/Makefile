@@ -2,10 +2,10 @@
 # Main
 
 run:
-	go run ./cmd/auth/main.go
+	go run ./cmd/mycloud/main.go
 
 build:
-	go build ./cmd/auth/main.go
+	go build ./cmd/mycloud/main.go
 
 
 
@@ -13,16 +13,16 @@ build:
 # Go migrate postgresql
 
 force:
-	migrate -database postgres://postgres:postgres@localhost:5432/file_db?sslmode=disable -path migrations force 1
+	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations force 1
 
 version:
-	migrate -database postgres://postgres:postgres@localhost:5432/file_db?sslmode=disable -path migrations version
+	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations version
 
 migrate_up:
-	migrate -database postgres://postgres:postgres@localhost:5432/file_db?sslmode=disable -path migrations up 1
+	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations up 1
 
 migrate_down:
-	migrate -database postgres://postgres:postgres@localhost:5432/file_db?sslmode=disable -path migrations down 1
+	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations down 1
 
 
 
@@ -36,3 +36,18 @@ develop:
 local:
 	echo "Starting local environment"
 	docker-compose -f docker-compose.local.yml up --build
+
+# ==============================================================================
+# Docker support
+
+FILES := $(shell docker ps -aq)
+
+down-local:
+	docker stop $(FILES)
+	docker rm $(FILES)
+
+clean:
+	docker system prune -f
+
+logs-local:
+	docker logs -f $(FILES)

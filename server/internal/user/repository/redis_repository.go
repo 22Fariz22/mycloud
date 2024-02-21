@@ -11,14 +11,14 @@ import (
 	"time"
 )
 
-// Auth redis repository
+// redis repository
 type userRedisRepo struct {
 	redisClient *redis.Client
 	basePrefix  string
 	logger      logger.Logger
 }
 
-// NewUserRedisRepo Auth redis repository constructor
+// NewUserRedisRepo redis repository constructor
 func NewUserRedisRepo(redisClient *redis.Client, logger logger.Logger) *userRedisRepo {
 	return &userRedisRepo{redisClient: redisClient, basePrefix: "user:", logger: logger}
 }

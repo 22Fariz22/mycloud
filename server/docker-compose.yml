@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  mycloud_microservice:
+    container_name: mycloud_microservice
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.HotReload
+    ports:
+      - "5001:5001"
+      - "5555:5555"
+      - "7070:7070"
+    environment:
+      - PORT=5001
+    depends_on:
+      - postgesql
+      - redis
+    restart: always
+    volumes:
+      - ./:/app
+    networks:
+      - mycloud_network
+
+  redis:
+    image: redis:6.0.9-alpine
+    container_name: mycloud_redis
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - mycloud_network
+
+  postgesql:
+    image: postgres:13-alpine
+    container_name: mycloud_postgesql
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mycloud_db
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - mycloud_network
+
+
+networks:
+  mycloud_network:
+    driver: bridge

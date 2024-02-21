@@ -15,6 +15,7 @@ var password string
 // signInCmd represents the signIn command
 var signInCmd = &cobra.Command{
 	Use:   "signin",
+	Short: "in",
 	Long:  `log in to your account, provide two arguments: email and password`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("signin called")
