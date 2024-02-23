@@ -8,12 +8,12 @@ services:
       dockerfile: docker/Dockerfile.HotReload
     ports:
       - "5001:5001"
-      - "5555:5555"
-      - "7070:7070"
+      # - "5555:5555"
+      # - "7070:7070"
     environment:
       - PORT=5001
     depends_on:
-      - postgesql
+      - postgresql
       - redis
     restart: always
     volumes:
@@ -30,21 +30,24 @@ services:
     networks:
       - mycloud_network
 
-  postgesql:
-    image: postgres:13-alpine
-    container_name: mycloud_postgesql
+  postgresql:
+    image: postgres:16
+    container_name: mycloud_postgresql
     ports:
-      - "5432:5432"
+      - "5431:5432"
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=mycloud_db
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
       - mycloud_network
 
+
+volumes:  
+  pgdata: {}
 
 networks:
   mycloud_network:

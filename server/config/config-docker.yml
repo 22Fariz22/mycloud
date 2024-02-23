@@ -24,13 +24,14 @@ logger:
   Level: info
 
 postgres:
-  PostgresqlHost: postgesql
+  PostgresqlHost: postgresql
   PostgresqlPort: 5432
   PostgresqlUser: postgres
   PostgresqlPassword: postgres
   PostgresqlDbname: mycloud_db
   PostgresqlSslmode: false
   PgDriver: pgx
+  EnableMigration: true
 
 redis:
   RedisAddr: redis:6379

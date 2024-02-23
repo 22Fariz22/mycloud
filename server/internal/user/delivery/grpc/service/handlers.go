@@ -40,6 +40,7 @@ func (u *usersService) Register(ctx context.Context, r *userService.RegisterRequ
 
 // Login user with email and password
 func (u *usersService) Login(ctx context.Context, r *userService.LoginRequest) (*userService.LoginResponse, error) {
+	log.Println("handler Login()")
 	login := r.GetLogin()
 
 	user, err := u.userUC.Login(ctx, login, r.GetPassword())

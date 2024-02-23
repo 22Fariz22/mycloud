@@ -32,11 +32,23 @@ func main() {
 	)
 	appLogger.Infof("Success parsed config: %#v", cfg.Server.AppVersion)
 
-	psqlDB, err := postgres.NewPsqlDB(cfg)
+	psqlDB, err := postgres.NewPsqlDB(cfg,appLogger)
 	if err != nil {
-		appLogger.Fatalf("Postgresql init: %s", err)
+		appLogger.Errorf("Postgresql init: %s", err)
 	}
 	defer psqlDB.Close()
+
+	// if cfg.Postgres.EnableMigration{
+	// 	m, err := migrate.New(
+	// 	"file://migrations",
+	// 	"postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable")
+	// if err != nil {
+	// 	appLogger.Errorf("err in migrate.New(): ",err)
+	// }
+	// if err := m.Up(); err != nil {
+	// 	appLogger.Errorf("err in m.Up(): ",err)
+	// }
+	// }
 
 	redisClient := redis.NewRedisClient(cfg)
 	defer redisClient.Close()
@@ -45,3 +57,5 @@ func main() {
 	authServer := app.NewAuthServer(appLogger, cfg, psqlDB, redisClient)
 	appLogger.Fatal(authServer.Run())
 }
+
+

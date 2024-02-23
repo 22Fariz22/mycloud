@@ -2,12 +2,13 @@ package usecase
 
 import (
 	"context"
+	"log"
 
-	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/22Fariz22/mycloud/server/internal/entity"
 	"github.com/22Fariz22/mycloud/server/internal/user"
 	"github.com/22Fariz22/mycloud/server/pkg/grpcerrors"
 	"github.com/22Fariz22/mycloud/server/pkg/logger"
+	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
@@ -77,6 +78,7 @@ func (u *userUseCase) FindByID(ctx context.Context, userID uuid.UUID) (*entity.U
 
 // Login user with email and password
 func (u *userUseCase) Login(ctx context.Context, login string, password string) (*entity.User, error) {
+	log.Println("uc Login()")
 	foundUser, err := u.userPgRepo.FindByLogin(ctx, login)
 	if err != nil {
 		return nil, errors.Wrap(err, "userPgRepo.FindByLogin")

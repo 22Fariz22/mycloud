@@ -38,6 +38,8 @@ func (r *UserRepository) Create(ctx context.Context, user *entity.User) (*entity
 
 // FindByLogin Find by user email address
 func (r *UserRepository) FindByLogin(ctx context.Context, login string) (*entity.User, error) {
+		log.Println("repo FindByLogin()")
+
 	user := &entity.User{}
 	if err := r.db.GetContext(ctx, user, findByLoginQuery, login); err != nil {
 		return nil, errors.Wrap(err, "FindByLogin.GetContext")

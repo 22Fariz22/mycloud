@@ -2,9 +2,11 @@ package postgres
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/22Fariz22/mycloud/server/config"
+	"github.com/22Fariz22/mycloud/server/pkg/logger"
 	_ "github.com/jackc/pgx/stdlib"
 	"github.com/jmoiron/sqlx"
 )
@@ -17,7 +19,7 @@ const (
 )
 
 // NewPsqlDB Return new Postgresql db instance
-func NewPsqlDB(c *config.Config) (*sqlx.DB, error) {
+func NewPsqlDB(c *config.Config, logger logger.Logger,) (*sqlx.DB, error) {
 	dataSourceName := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s",
 		c.Postgres.PostgresqlHost,
 		c.Postgres.PostgresqlPort,
@@ -25,9 +27,11 @@ func NewPsqlDB(c *config.Config) (*sqlx.DB, error) {
 		c.Postgres.PostgresqlDbname,
 		c.Postgres.PostgresqlPassword,
 	)
+	log.Println("pkg.postgres.NewPsqlDB()--dataSourceName: ",dataSourceName)
 
 	db, err := sqlx.Connect(c.Postgres.PgDriver, dataSourceName)
 	if err != nil {
+		logger.Error("error in pkg.postrgres.NewPsqlDB()--sqlx.Connect()")
 		return nil, err
 	}
 
@@ -36,6 +40,7 @@ func NewPsqlDB(c *config.Config) (*sqlx.DB, error) {
 	db.SetMaxIdleConns(maxIdleConns)
 	db.SetConnMaxIdleTime(connMaxIdleTime * time.Second)
 	if err = db.Ping(); err != nil {
+		logger.Error("error in pkg.postrgres.NewPsqlDB()--Ping()")
 		return nil, err
 	}
 

@@ -13,16 +13,17 @@ build:
 # Go migrate postgresql
 
 force:
-	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations force 1
+	migrate -database postgres://postgres:postgres@localhost:5431/mycloud_db?sslmode=disable -path migrations force 1
 
 version:
-	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations version
+	migrate -database postgres://postgres:postgres@localhost:5431/mycloud_db?sslmode=disable -path migrations version
 
 migrate_up:
-	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations up 1
+	migrate -database postgres://postgres:postgres@localhost:5431/mycloud_db?sslmode=disable -path migrations up 1
+		# migrate -path migrations/ -database "postgres://postgres:postgres@localhost:5431/mycloud_db?sslmode=disable" -verbose up
 
 migrate_down:
-	migrate -database postgres://postgres:postgres@localhost:5432/mycloud_db?sslmode=disable -path migrations down 1
+	migrate -database postgres://postgres:postgres@localhost:5431/mycloud_db?sslmode=disable -path migrations down 1
 
 
 

@@ -55,6 +55,7 @@ type PostgresConfig struct {
 	PostgresqlDbname   string
 	PostgresqlSSLMode  bool
 	PgDriver           string
+	EnableMigration 		bool   
 }
 
 // RedisConfig Redis config
@@ -90,7 +91,7 @@ func LoadConfig(filename string) (*viper.Viper, error) {
 	v := viper.New()
 
 	v.SetConfigName(filename)
-	v.AddConfigPath("./server")
+	v.AddConfigPath("./")
 	v.AutomaticEnv()
 	if err := v.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {

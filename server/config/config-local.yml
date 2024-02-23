@@ -1,5 +1,5 @@
 server:
-  AppVersion: 1.0.0
+  AppVersion: 1.0.1
   Port: :5001
   PprofPort: :5555
   Mode: Development
@@ -25,12 +25,13 @@ logger:
 
 postgres:
   PostgresqlHost: localhost
-  PostgresqlPort: 5432
+  PostgresqlPort: 5431
   PostgresqlUser: postgres
   PostgresqlPassword: 55555
   PostgresqlDbname: mycloud_db
   PostgresqlSslmode: false
   PgDriver: pgx
+  EnableMigration: true
 
 redis:
   RedisAddr: localhost:6379

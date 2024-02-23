@@ -11,8 +11,8 @@ COPY ./ /app
 
 RUN go mod download
 
-RUN go get github.com/githubnemo/CompileDaemon
+RUN go install -mod=mod github.com/githubnemo/CompileDaemon
 
 EXPOSE 5001
 
-ENTRYPOINT CompileDaemon --build="go build server/cmd/mycloud/main.go" --command=./main
+ENTRYPOINT CompileDaemon --build="go build cmd/mycloud/main.go" --command=./main
