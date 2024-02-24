@@ -1,7 +1,7 @@
 package pkg
 
 import (
-	pb "github.com/22Fariz22/mycloud/proto"
+	pb "github.com/22Fariz22/mycloud/cli/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"log"

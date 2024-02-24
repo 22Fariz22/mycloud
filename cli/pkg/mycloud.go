@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	pb "github.com/22Fariz22/mycloud/proto"
+	pb "github.com/22Fariz22/mycloud/cli/proto"
 	"google.golang.org/grpc/metadata"
 )
 
