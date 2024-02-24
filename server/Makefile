@@ -7,8 +7,6 @@ run:
 build:
 	go build ./cmd/mycloud/main.go
 
-
-
 # ==============================================================================
 # Go migrate postgresql
 
@@ -24,8 +22,6 @@ migrate_up:
 
 migrate_down:
 	migrate -database postgres://postgres:postgres@localhost:5431/mycloud_db?sslmode=disable -path migrations down 1
-
-
 
 # ==============================================================================
 # Docker compose commands
