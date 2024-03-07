@@ -9,7 +9,6 @@ import (
 
 	"google.golang.org/grpc/reflection"
 
-	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/22Fariz22/mycloud/server/config"
 	"github.com/22Fariz22/mycloud/server/internal/interceptors"
 	sessRepository "github.com/22Fariz22/mycloud/server/internal/session/repository"
@@ -18,6 +17,7 @@ import (
 	userRepository "github.com/22Fariz22/mycloud/server/internal/user/repository"
 	userUseCase "github.com/22Fariz22/mycloud/server/internal/user/usecase"
 	"github.com/22Fariz22/mycloud/server/pkg/logger"
+	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/go-redis/redis/v8"
 	grpcrecovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"

@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/22Fariz22/mycloud/server/internal/entity"
+	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
@@ -38,7 +38,7 @@ func (r *UserRepository) Create(ctx context.Context, user *entity.User) (*entity
 
 // FindByLogin Find by user email address
 func (r *UserRepository) FindByLogin(ctx context.Context, login string) (*entity.User, error) {
-		log.Println("repo FindByLogin()")
+	log.Println("repo FindByLogin()")
 
 	user := &entity.User{}
 	if err := r.db.GetContext(ctx, user, findByLoginQuery, login); err != nil {

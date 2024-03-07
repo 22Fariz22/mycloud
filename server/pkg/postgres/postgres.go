@@ -19,7 +19,7 @@ const (
 )
 
 // NewPsqlDB Return new Postgresql db instance
-func NewPsqlDB(c *config.Config, logger logger.Logger,) (*sqlx.DB, error) {
+func NewPsqlDB(c *config.Config, logger logger.Logger) (*sqlx.DB, error) {
 	dataSourceName := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s",
 		c.Postgres.PostgresqlHost,
 		c.Postgres.PostgresqlPort,
@@ -27,7 +27,7 @@ func NewPsqlDB(c *config.Config, logger logger.Logger,) (*sqlx.DB, error) {
 		c.Postgres.PostgresqlDbname,
 		c.Postgres.PostgresqlPassword,
 	)
-	log.Println("pkg.postgres.NewPsqlDB()--dataSourceName: ",dataSourceName)
+	log.Println("pkg.postgres.NewPsqlDB()--dataSourceName: ", dataSourceName)
 
 	db, err := sqlx.Connect(c.Postgres.PgDriver, dataSourceName)
 	if err != nil {

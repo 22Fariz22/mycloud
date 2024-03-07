@@ -13,15 +13,21 @@ CREATE TABLE users
 
 );
 
--- CREATE TABLE files
--- (
---     file_id    UUID PRIMARY KEY         DEFAULT uuid_generate_v4(),
---     -- user_id    VARCHAR,
---     title      VARCHAR(32)              NOT NULL,
---     data       bytea                    NOT NULL
---     -- created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
---     -- CONSTRAINT fk_user 
---     -- FOREIGN KEY(user_id)
---     -- REFERENCES users(user_id)
--- );
+CREATE TABLE files
+(
+    file_id    UUID PRIMARY KEY         DEFAULT uuid_generate_v4(),
+    user_id    UUID,
+    title      VARCHAR(32)              NOT NULL,
+    data       bytea                    NOT NULL,
+    -- created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    CONSTRAINT fk_user 
+    FOREIGN KEY(user_id)
+    REFERENCES users(user_id)
+);
 
+-- CREATE TABLE binaries
+-- (
+--     user_id    VARCHAR,
+--     title      VARCHAR(32)              NOT NULL  ,
+--     data       bytea                     NOT NULL
+-- );

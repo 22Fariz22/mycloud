@@ -32,7 +32,7 @@ func main() {
 	)
 	appLogger.Infof("Success parsed config: %#v", cfg.Server.AppVersion)
 
-	psqlDB, err := postgres.NewPsqlDB(cfg,appLogger)
+	psqlDB, err := postgres.NewPsqlDB(cfg, appLogger)
 	if err != nil {
 		appLogger.Errorf("Postgresql init: %s", err)
 	}
@@ -57,5 +57,3 @@ func main() {
 	authServer := app.NewAuthServer(appLogger, cfg, psqlDB, redisClient)
 	appLogger.Fatal(authServer.Run())
 }
-
-

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/22Fariz22/mycloud/cli/pkg"
-	pb "github.com/22Fariz22/mycloud/proto"
+	pb "github.com/22Fariz22/cli/proto"
 
 	"github.com/spf13/cobra"
 )

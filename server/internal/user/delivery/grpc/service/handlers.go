@@ -5,10 +5,10 @@ import (
 	"errors"
 	"log"
 
-	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/22Fariz22/mycloud/server/internal/entity"
 	"github.com/22Fariz22/mycloud/server/pkg/grpcerrors"
 	"github.com/22Fariz22/mycloud/server/pkg/utils"
+	userService "github.com/22Fariz22/mycloud/server/proto"
 	"github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
@@ -57,6 +57,10 @@ func (u *usersService) Login(ctx context.Context, r *userService.LoginRequest) (
 		return nil, status.Errorf(grpcerrors.ParseGRPCErrStatusCode(err), "sessUC.CreateSession: %v", err)
 	}
 
+	// header := metadata.Pairs("gateway-session-userId", session)
+	// // send the header back to the gateway
+	// grpc.SendHeader(ctx, header)
+	
 	return &userService.LoginResponse{User: u.userModelToProto(user), SessionId: session}, err
 }
 
@@ -138,7 +142,7 @@ func (u *usersService) AddBinary(ctx context.Context, request *userService.AddBi
 	if err != nil {
 		return nil, err
 	}
-
+  log.Println("title: ", request.Title)
 	err = u.userUC.AddBinary(ctx, session.UserID.String(), request)
 	if err != nil {
 		return &userService.AddBinaryResponse{}, err

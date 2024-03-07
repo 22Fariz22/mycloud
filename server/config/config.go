@@ -55,7 +55,7 @@ type PostgresConfig struct {
 	PostgresqlDbname   string
 	PostgresqlSSLMode  bool
 	PgDriver           string
-	EnableMigration 		bool   
+	EnableMigration    bool
 }
 
 // RedisConfig Redis config
